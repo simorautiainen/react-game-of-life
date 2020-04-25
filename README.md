@@ -33,4 +33,4 @@ Launching the app
 npm start
 ```
 
-End with an react Timetables app which should open at [http://localhost:3000](http://localhost:3000)
+End with fully functional Game of Life app which should open at [http://localhost:5000](http://localhost:5000)
