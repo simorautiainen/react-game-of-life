@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Container,Row,Col,ToggleButton,ButtonGroup,ToggleButtonGroup} from 'react-bootstrap';
 import styled from 'styled-components';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import swal from 'sweetalert';
 import {spaceships,oscillators,gliderGun} from '../assets/presets.js'
 
