@@ -1,3 +1,5 @@
+//Grid templates with various game of life applications
+
 const gliderGun = [
     [10,16],
     [11,16],

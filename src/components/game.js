@@ -26,6 +26,7 @@ class Grid extends Component {
     render(){
         return(
             <div style={{
+                //makes the squares be in a grid
                 display: "grid",
                 gridTemplateColumns: `repeat(${columns}, ${gridWidth/columns}px)`
             }}>
@@ -53,17 +54,20 @@ class ButtonBar extends Component{
                     </Col>
                 </Row>
             <Row>
+
             <Col style={{paddingBottom: "2vh"}} md={3}>
             <ButtonGroup className="mb-2">
             <Button variant="outline-dark" onClick={() => this.props.nextGeneration()}>Next Step</Button>
             <Button variant="outline-dark" onClick={() => this.props.clearGrid()}>Clear</Button>
             </ButtonGroup>
             </Col>
+
             <Col md={3}>
             <ToggleButtonGroup type="checkbox" >
             <ToggleButton value={1} variant="outline-dark" toggle="true" onChange={() => this.props.automaticGrid()}>Auto</ToggleButton>
             </ToggleButtonGroup>
             </Col>
+
             <Col md={3}>
             <div className="dropdown">
             <button className="dropbtn">Presets</button>
@@ -74,6 +78,7 @@ class ButtonBar extends Component{
             </div>
             </div>
             </Col>
+
             <Col className="text-right" md={{span: 3}} style={{paddingBottom: "2vh"}}>
             <Button variant="outline-dark" onClick={() => this.props.onRules()}>Info</Button>
             </Col>
@@ -86,19 +91,22 @@ class Game extends Component {
     constructor(props){
         super(props);
         this.state = {
+            //Creation of 2D array
             grid: Array.from(Array(rows), () =>
             new Array(columns).fill(0)),
+
+            //Switch for automatic grid
             autoSwitch: false,
 
         }
     }
+
     intervalID = 0;
 
     handleClick(y,x){
         let newGrid = [...this.state.grid];
         newGrid[y][x] === 0 ? newGrid[y][x] = 1 : newGrid[y][x] = 0;
         this.setState({grid : newGrid})
-        
     }
     nextGeneration(){
         let copy = [...this.state.grid]
@@ -170,16 +178,21 @@ export default Game
 
 
 function calculateNextGeneration(givengrid){
-    //json stringify
     let newGrid = Array.from(Array(rows), () =>
     new Array(columns).fill(0))
 
     for(let y=0;y<rows;y++){
         for(let x=0;x<columns;x++){
             //Now we have every single cell and we start counting next phase
+            //Variable in which we count the amount of neighbours of the examined dot
             let neighbourAmount = 0;
+
             for(let neighbourY=y-1;neighbourY <= y+1;neighbourY++){
                 for(let neighbourX = x-1;neighbourX <= x+1;neighbourX++){
+                    /*
+                    If the neighbour coordinates are the same as the examined dots coordinates we skip the neighbourcheck.
+                    We also skip the check if we go overbounds in our 2D Array
+                    */
                     if(((neighbourY === y && neighbourX === x)) || neighbourY < 0 || neighbourY > (rows-1) || neighbourX < 0 || neighbourX > (columns-1)){
                         continue;
                     }
@@ -204,7 +217,7 @@ function calculateNextGeneration(givengrid){
 }
 
 function presetGrid(wantedPreset){
-    //json stringify
+    //We get gliderGun, oscillators and spaceships from file presets.js which is imported above.
     let newGrid = Array.from(Array(rows), () =>
     new Array(columns).fill(0))
 
