@@ -24,13 +24,26 @@ Copy this repository with git clone or download zip. Navigate to the directory a
 Installing all the modules
 
 ```
-npm install --save
+npm i
 ```
+# First way of starting the app
 
-Launching the app
+Launching the app with creating a production build and serving it. (This is the fastest build but the build takes up space on your computer)
 
 ```
 npm start
 ```
 
 End with fully functional Game of Life app which should open at [http://localhost:5000](http://localhost:5000)
+</br>
+
+# Second way of starting the app
+Launching the app with a development build and opening a port to 3000 to display it. (This is the slower way to build but doesn't take up space)
+
+```
+npm run dev
+```
+
+End with fully functional Game of Life app which should open at [http://localhost:3000](http://localhost:3000)
+
+
