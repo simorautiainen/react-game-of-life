@@ -12,7 +12,7 @@ const columns = Math.round(rows * (gridWidth/gridHeight));
 
 const Boxedi = styled.div`
   cursor: pointer;
-  background-color: ${props => (props.value === 1 ? '#430547' : 'white')};
+  background-color: ${props => (props.value === 1 ? props.color : 'white')};
   width: ${gridWidth/columns}px;
   height: ${gridHeight/rows}px;
   border: 1px solid #504E4E;
@@ -21,6 +21,17 @@ const Boxedi = styled.div`
 
 `;
 
+const colors = [
+    "#00ff00",//green
+    "#ff0000",//red
+    "#0066ff",//blue
+    "#ff3399",//pink
+    "#00ffff",//lightblue
+    "#993300",//brown
+    "#003300",//darkgreen
+    "#ffcc66",//lightyellow
+    "#ffff00",//yellow
+]
 class Grid extends Component {
     render(){
         return(
@@ -31,7 +42,9 @@ class Grid extends Component {
             }}>
                 {this.props.grid.map((rows, y) =>
                     rows.map((columns, x) =>
-                    <Boxedi key={`${y},${x}`} value={this.props.grid[y][x]} onClick={() => this.props.onClick(y,x)}>
+                    <Boxedi key={`${y},${x}`} value={this.props.grid[y][x]} onClick={() => this.props.onClick(y,x)}
+                    color={this.props.colorMode ? colors[Math.floor(Math.random()*9)] : "#430547"}
+                    >
                     </Boxedi>
                     )
                 )}
@@ -54,20 +67,21 @@ class ButtonBar extends Component{
                 </Row>
             <Row>
 
-            <Col style={{paddingBottom: "2vh"}} xs={3} sm={3}>
+            <Col style={{paddingBottom: "2vh"}} xs={3} sm={3} md={3}>
             <ButtonGroup className="mb-2">
             <Button variant="outline-dark" onClick={() => this.props.nextGeneration()}>Next Step</Button>
             <Button variant="outline-dark" onClick={() => this.props.clearGrid()}>Clear</Button>
             </ButtonGroup>
             </Col>
 
-            <Col xs={3} sm={3}>
+            <Col xs={3} sm={3} md={3}>
             <ToggleButtonGroup type="checkbox" >
             <ToggleButton value={1} variant="outline-dark" toggle="true" onChange={() => this.props.automaticGrid()}>Auto</ToggleButton>
+            <ToggleButton value={2} variant="outline-dark" toggle="true" onChange={() => this.props.setColorMode()}>Color</ToggleButton>
             </ToggleButtonGroup>
             </Col>
 
-            <Col xs={3} sm={3}>
+            <Col sm={3} md={3}>
             <div className="dropdown">
             <button className="dropbtn">Presets</button>
             <div className="dropdown-content">
@@ -78,7 +92,7 @@ class ButtonBar extends Component{
             </div>
             </Col>
 
-            <Col className="text-right" xs={3} sm={3} style={{paddingBottom: "2vh"}}>
+            <Col className="text-right"  sm={3} md={3} style={{paddingBottom: "2vh"}}>
             <Button variant="outline-dark" onClick={() => this.props.onRules()}>Info</Button>
             </Col>
             </Row>
@@ -96,12 +110,12 @@ class Game extends Component {
 
             //Switch for automatic grid
             autoSwitch: false,
+            colorMode: false,
 
         }
     }
 
     intervalID = 0;
-
     handleClick(y,x){
         let newGrid = [...this.state.grid];
         newGrid[y][x] === 0 ? newGrid[y][x] = 1 : newGrid[y][x] = 0;
@@ -130,6 +144,9 @@ class Game extends Component {
         this.setState({autoSwitch: false})
     }
     }
+    setColorMode(){
+        this.state.colorMode ? this.setState({colorMode:false}) : this.setState({colorMode:true})
+    }
     onRules(){
         swal({
 
@@ -152,18 +169,20 @@ class Game extends Component {
     }
     render(){
         return(
-            <Container style={{width: gridWidth,marginLeft: "20vw", marginTop: "1vh",fontFamily: "Inconsolata", fontWeight: "900", justifyContent: "center"}}>
+            <Container className="justify-content-md-center" style={{width: gridWidth, marginTop: "1vh",fontFamily: "Inconsolata", fontWeight: "900"}}>
             <ButtonBar
             automaticGrid={() => this.automaticGrid()}
             clearGrid={() => this.clearGrid()}
             onRules={() => this.onRules()}
             onGliderPreset={(preset) => this.onGliderPreset(preset)} 
             nextGeneration={() => this.nextGeneration()}
+            setColorMode={() => this.setColorMode()}
             />
             <Row>
             <Col>
             <Grid
             grid={this.state.grid} onClick={(y,x) => this.handleClick(y,x)}
+            colorMode={this.state.colorMode}
                 />
             </Col>
             </Row>
