@@ -1,7 +1,7 @@
 # Game of Life made with react
 
 This is the famous game of life made with Javascript React</br>
-
+Live version is at [https://simo-game-of-life.herokuapp.com/](https://simo-game-of-life.herokuapp.com/)
 
 ## Getting Started
 
