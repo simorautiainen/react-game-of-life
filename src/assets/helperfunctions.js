@@ -69,4 +69,18 @@ function presetGrid(wantedPreset){
     return newGrid;
 }
 
-export {presetGrid,calculateNextGeneration}
+function psykosisMaker(){
+    let newGrid = Array.from(Array(rows), () =>
+    new Array(columns).fill(1))
+
+    for(let y=0;y<rows;y++){
+        for(let x=0;x<columns;x++){
+            if((y+1)%3==0 || (x+1)%3==0){
+                newGrid[y][x]=0;
+            }
+    }
+    }
+    return newGrid;
+}
+
+export {presetGrid,calculateNextGeneration,psykosisMaker}

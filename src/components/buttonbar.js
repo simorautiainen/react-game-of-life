@@ -36,6 +36,7 @@ class ButtonBar extends Component{
             <div className="the-content" onClick={() => this.props.onGliderPreset("GliderGun")}>GliderGun</div>
             <div className="the-content" onClick={() => this.props.onGliderPreset("Oscillators")}>Oscillators</div>
              <div className="the-content" onClick={() => this.props.onGliderPreset("Spaceships")}>Spaceships</div>
+             <div className="the-content" onClick={() => this.props.setPsykosisGrid()}>Boxes</div>
             </div>
             </div>
             </Col>

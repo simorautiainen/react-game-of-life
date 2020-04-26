@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import ButtonBar from './buttonbar.js'
 import Grid from './grid.js'
 import {columns, rows,gridWidth} from '../assets/helpervariables.js'
-import {presetGrid,calculateNextGeneration} from '../assets/helperfunctions.js'
+import {presetGrid,calculateNextGeneration,psykosisMaker} from '../assets/helperfunctions.js'
 
 class Game extends Component {
     constructor(props){
@@ -53,6 +53,9 @@ class Game extends Component {
     setColorMode(){
         this.state.colorMode ? this.setState({colorMode:false}) : this.setState({colorMode:true})
     }
+    setPsykosisGrid(){
+        this.setState({grid: psykosisMaker()})
+    }
     onRules(){
         swal({
 
@@ -83,6 +86,7 @@ class Game extends Component {
             onGliderPreset={(preset) => this.onGliderPreset(preset)} 
             nextGeneration={() => this.nextGeneration()}
             setColorMode={() => this.setColorMode()}
+            setPsykosisGrid={() => this.setPsykosisGrid()}
             />
             <Row>
             <Col>
