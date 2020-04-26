@@ -29,7 +29,7 @@ class ButtonBar extends Component{
             </ToggleButtonGroup>
             </Col>
 
-            <Col sm={3} md={3}>
+            <Col sm={3} md={3} xs={3}>
             <div className="dropdown">
             <button className="dropbtn">Presets</button>
             <div className="dropdown-content">
