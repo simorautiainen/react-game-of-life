@@ -40,7 +40,7 @@ class ButtonBar extends Component{
             </div>
             </Col>
 
-            <Col className="text-right"  sm={3} md={3} style={{paddingBottom: "2vh"}}>
+            <Col className="text-right"  sm={3} md={3} xs={3} style={{paddingBottom: "2vh"}}>
             <Button variant="outline-dark" onClick={() => this.props.onRules()}>Info</Button>
             </Col>
             </Row>
