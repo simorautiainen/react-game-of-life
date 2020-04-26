@@ -48,26 +48,26 @@ class ButtonBar extends Component{
         return(
             <>
             <Row style={{ paddingBottom: "1vh", textAlign: "center"}}>
-                    <Col md={12} style={{fontSize: "35px"}}>
+                    <Col xs={12} style={{fontSize: "35px"}}>
                         THIS IS THE GAME OF LIFE
                     </Col>
                 </Row>
             <Row>
 
-            <Col style={{paddingBottom: "2vh"}} md={3}>
+            <Col style={{paddingBottom: "2vh"}} xs={3} sm={3}>
             <ButtonGroup className="mb-2">
             <Button variant="outline-dark" onClick={() => this.props.nextGeneration()}>Next Step</Button>
             <Button variant="outline-dark" onClick={() => this.props.clearGrid()}>Clear</Button>
             </ButtonGroup>
             </Col>
 
-            <Col md={3}>
+            <Col xs={3} sm={3}>
             <ToggleButtonGroup type="checkbox" >
             <ToggleButton value={1} variant="outline-dark" toggle="true" onChange={() => this.props.automaticGrid()}>Auto</ToggleButton>
             </ToggleButtonGroup>
             </Col>
 
-            <Col md={3}>
+            <Col xs={3} sm={3}>
             <div className="dropdown">
             <button className="dropbtn">Presets</button>
             <div className="dropdown-content">
@@ -78,7 +78,7 @@ class ButtonBar extends Component{
             </div>
             </Col>
 
-            <Col className="text-right" md={{span: 3}} style={{paddingBottom: "2vh"}}>
+            <Col className="text-right" xs={3} sm={3} style={{paddingBottom: "2vh"}}>
             <Button variant="outline-dark" onClick={() => this.props.onRules()}>Info</Button>
             </Col>
             </Row>
@@ -141,7 +141,7 @@ class Game extends Component {
             3. Any live cell with more than three live neighbours dies, as if by overpopulation.\n
             4. Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.\n
             \nUnlike in normal game of life, this version has borders.
-            \nYou can modify the presets or make your own ships just by clicking the squares
+            \nYou can modify the presets or make your own shapes just by clicking the squares
             `,
             icon: "info",
         });
@@ -152,7 +152,7 @@ class Game extends Component {
     }
     render(){
         return(
-            <Container style={{width: gridWidth,marginLeft: "20vw", marginTop: "1vh",fontFamily: "Inconsolata", fontWeight: "900"}}>
+            <Container style={{width: gridWidth,marginLeft: "20vw", marginTop: "1vh",fontFamily: "Inconsolata", fontWeight: "900", justifyContent: "center"}}>
             <ButtonBar
             automaticGrid={() => this.automaticGrid()}
             clearGrid={() => this.clearGrid()}
